@@ -1,0 +1,71 @@
+function validations(event) {
+  var emailField = document.getElementsByName("emailsignin")[0];
+  var passwordField = document.getElementsByName("passwordsignin")[0];
+  var isValid = true;
+
+  if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(emailField.value)) {
+    alert("example : abc@xyz.pqr");
+    isValid = false;
+  }
+
+  if (!/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(passwordField.value)) {
+    alert("Must have:\n" +
+      "- At least one lowercase letter\n" +
+      "- One uppercase letter\n" +
+      "- One digit\n" +
+      "- One special character\n" +
+      "- and must have 6-16 characters");
+    passwordField.value = ''; // Clear the password field
+    passwordField.focus(); // Set focus back to the password field
+    isValid = false;
+  }
+
+  if (!isValid) {
+    event.preventDefault(); // Prevent the form from being submitted
+  }
+
+  return isValid;
+}
+
+
+function validationsReg(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  var email = document.getElementsByName("emailReg")[0].value;
+  if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)) {
+    alert("example : abc@xyz.pqr");
+    return false;
+  }
+
+  var password = document.getElementsByName("passwordReg")[0].value;
+  if (!/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password)) {
+    alert("Must have:\n" +
+      "- At least one lowercase letter\n" +
+      "- One uppercase letter\n" +
+      "- One digit\n" +
+      "- One special character\n" +
+      "- and must have 6-16 characters");
+    return false;
+  }
+
+  var rptPassword = document.getElementsByName("passwordRpt")[0].value;
+  if (password !== rptPassword) {
+    alert("password doesn't match");
+    return false;
+  }
+
+  // If all validations pass, handle the redirection here (if needed)
+  // For example, you can redirect to the login section using JavaScript
+  document.getElementById("tab-1").checked = true;
+
+  return true;
+}
+
+function validationsForgot() {
+	var email = document.getElementsByName("email")[0].value;
+	if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)) {
+		alert("example : abc@xyz.pqr");
+		return false;
+	}
+	return true;
+}
